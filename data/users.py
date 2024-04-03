@@ -11,7 +11,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    username = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    login = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     nickname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     telegram = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     xp = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
