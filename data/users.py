@@ -11,9 +11,8 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     login = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    nickname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    telegram = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     xp = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     inventory = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     hands = sqlalchemy.Column(sqlalchemy.String, nullable=True)
@@ -22,11 +21,8 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     head = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     used_promocodes = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     icon_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    guild_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("guilds.id"))
+    guild_id = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
-    guilds = orm.relationship('Guild')
-    user = orm.relationship("Users", back_populates='user')
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

@@ -10,8 +10,5 @@ class Guild(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     guild_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    guildmaster_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
+    guildmaster_id = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     guild_members_id = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
-    user = orm.relationship('User')
-    guild = orm.relationship("Guilds", back_populates='guild')

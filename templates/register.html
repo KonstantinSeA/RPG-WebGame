@@ -33,18 +33,9 @@
         {% endfor %}
     </p>
     <p>
-        {{ form.telegram.label }}
-        {{ form.telegram(class="form-control") }}<br>
-        {% for error in form.telegram.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.nickname.label }}
-        {{ form.nickname(class="form-control") }}<br>
-        {% for error in form.nickname.errors %}
+        {{ form.name.label }}
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>

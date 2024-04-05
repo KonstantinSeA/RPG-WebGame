@@ -5,12 +5,12 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.login.label }}<br>
+            {{ form.login.label }}
             {{ form.login(class="form-control") }}<br>
             {% for error in form.login.errors %}
-                <div class="alert alert-danger" role="alert">
+                <p class="alert alert-danger" role="alert">
                     {{ error }}
-                </div>
+                </p>
             {% endfor %}
         </p>
         <p>

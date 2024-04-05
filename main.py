@@ -42,8 +42,7 @@ def register():
                                    form=form, message='Пользователь уже существует')
         user = User(
             login=form.login.data,
-            telegram=form.telegram.data,
-            nickname=form.nickname.data
+            name=form.name.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -76,7 +75,7 @@ def login():
 
 def main():
     db_session.global_init('db/blogs.db')
-    app.run()
+    app.run(port=8080)
 
 
 if __name__ == '__main__':
