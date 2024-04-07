@@ -1,0 +1,16 @@
+body {
+		background: #000 url('../img/login_back.jpg'); /* Фоновый цвет и фоновый рисунок*/
+		color: #FFFFE0;
+		background-attachment: fixed;
+		background-repeat: repeat-x;
+	}
+
+.form-control:focus {
+    border-color: #F0E68C;
+    color: #F0E68C;
+}
+
+.form-control {
+    background-color:rgba(0,0,0,0) !important;
+    color: #FFFFE0
+}

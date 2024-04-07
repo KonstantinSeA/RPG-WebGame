@@ -2,8 +2,7 @@ from flask import Flask, render_template, redirect, request, make_response, abor
 from flask import session, jsonify
 from data import db_session
 from data.users import User
-from forms.user import RegisterForm
-from forms.login import LoginForm
+from forms.user import RegisterForm, LoginForm
 import datetime as dt
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_login import current_user
