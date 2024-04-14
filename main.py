@@ -39,9 +39,29 @@ def register():
         if db_sess.query(User).filter(User.login == form.login.data).first():
             return render_template('register.html', title='Регистрация',
                                    form=form, message='Пользователь уже существует')
+        if len(str(form.password.data)) < 6:
+            return render_template('register.html', title='Регистрация',
+                                   form=form, message='Длина Пароля должна превышать 6')
+        if len(set(str(form.password.data))) < 2:
+            return render_template('register.html', title='Регистрация',
+                                   form=form,
+                                   message='Используйте в пароле не менее 3 разных символов')
+        if form.password.data.isalpha():
+            return render_template('register.html', title='Регистрация',
+                                   form=form, message='Используйте в пароле цифры')
+        if form.password.data.isdigit():
+            return render_template('register.html', title='Регистрация',
+                                   form=form, message='Используйте в пароле буквы')
         user = User(
             login=form.login.data,
-            name=form.name.data
+            name=form.name.data,
+            xp=0,
+            level=1,
+            inventory='',
+            hands=1,
+            body=2,
+            legs=3,
+            head=4
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -70,6 +90,11 @@ def login():
         return render_template('login.html', title='Авторизация',
                                message='Неверный логин или пароль', form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    return render_template("profile.html")
 
 
 def main():

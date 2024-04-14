@@ -1,47 +1,51 @@
 {% extends "base.html" %}
 
+{% block head_content %}
+    <link rel="stylesheet" type="text/css" href="static/css/login_style.css" />
+{% endblock %}
+
 {% block content %}
-<h1>Регистрация пользователя</h1>
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    {{ form.csrf_token }}
-    <p>
-        {{ form.login.label }}
-        {{ form.login(class="form-control") }}<br>
-        {% for error in form.login.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}
-        {{ form.password(class="form-control", type="password") }}<br>
-        {% for error in form.password.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password_again.label }}
-        {{ form.password_again(class="form-control", type="password") }}<br>
-        {% for error in form.password_again.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.name.label }}
-        {{ form.name(class="form-control") }}<br>
-        {% for error in form.name.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-    {{ message }}
-</form>
+    <br>
+    <h1 align="center">Кажется, настал момент заявить о себе</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <p align="center">
+            {{ form.login.label }}
+            {{ form.login(class="form-control") }}<br>
+            {% for error in form.login.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p align="center">
+            {{ form.password.label }}
+            {{ form.password(class="form-control", type="password") }}<br>
+            {% for error in form.password.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p align="center">
+            {{ form.password_again.label }}
+            {{ form.password_again(class="form-control", type="password") }}<br>
+            {% for error in form.password_again.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p align="center">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}<br>
+            {% for error in form.name.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        <p align="center">{{ form.submit(type="submit", class="btn btn-outline-secondary") }}</p>
+        <div>{{ message }}</div>
+    </form>
 {% endblock %}

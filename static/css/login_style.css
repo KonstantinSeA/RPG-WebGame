@@ -3,7 +3,7 @@ body {
 		color: #FFFFE0;
 		background-attachment: fixed;
 		background-repeat: repeat-x;
-	}
+}
 
 .form-control:focus {
     border-color: #F0E68C;
