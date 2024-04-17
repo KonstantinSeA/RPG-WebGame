@@ -61,7 +61,9 @@ def register():
             hands=1,
             body=2,
             legs=3,
-            head=4
+            head=4,
+            energy=10,
+            icon_name='standart.jpg'
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -95,6 +97,19 @@ def login():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     return render_template("profile.html")
+
+
+@app.route('/support', methods=['GET', 'POST'])
+def support():
+    return render_template("support_form.html")
+
+
+@app.route('/inventory', methods=['GET', 'POST'])
+def inventory():
+    items = [['stick_1', 'head', 'par', '1'], ['stick_2', 'hands', 'par', '2'],
+             ['stick_3', 'hands', 'par', '3'], ['stick_4', 'body', 'par', '4'],
+             ['stick_5', 'legs', 'par', '5']]
+    return render_template("inventory.html", rows_n=1, no_rows=1, items=items)
 
 
 def main():

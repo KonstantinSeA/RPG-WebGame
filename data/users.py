@@ -21,6 +21,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     legs = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     head = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     icon_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    energy = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     guild_id = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 

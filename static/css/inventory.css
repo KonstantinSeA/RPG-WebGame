@@ -1,0 +1,6 @@
+body {
+		background: #000 url('../img/backgrounds/inventory_back.jpg');
+		color: #FFFFE0;
+		background-attachment: fixed;
+		background-repeat: repeat-x;
+}

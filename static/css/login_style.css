@@ -1,5 +1,5 @@
 body {
-		background: #000 url('../img/login_back.jpg'); /* Фоновый цвет и фоновый рисунок*/
+		background: #000 url('../img/backgrounds/login_back.jpg'); /* Фоновый цвет и фоновый рисунок*/
 		color: #FFFFE0;
 		background-attachment: fixed;
 		background-repeat: repeat-x;
