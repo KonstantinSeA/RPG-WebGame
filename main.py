@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, make_response, abor
 from flask import session, jsonify
 from data import db_session
 from data.users import User
+from data.items import Item
 from forms.user import RegisterForm, LoginForm
 import datetime as dt
 from flask_login import LoginManager, login_user, login_required, logout_user
@@ -106,10 +107,14 @@ def support():
 
 @app.route('/inventory', methods=['GET', 'POST'])
 def inventory():
-    items = [['stick_1', 'head', 'par', '1'], ['stick_2', 'hands', 'par', '2'],
-             ['stick_3', 'hands', 'par', '3'], ['stick_4', 'body', 'par', '4'],
-             ['stick_5', 'legs', 'par', '5']]
-    return render_template("inventory.html", rows_n=1, no_rows=1, items=items)
+    db_sess = db_session.create_session()
+    all_items = db_sess.query(Item).all()
+    items = []
+    for x in current_user.inventory.split(', '):
+        items.append((all_items[int(x) - 1].name, all_items[int(x) - 1].position,
+                      all_items[int(x) - 1].about, all_items[int(x) - 1].id))
+    return render_template("inventory.html", rows_n=len(items) // 4,
+                           no_rows=len(items) % 4, items=items)
 
 
 def main():
