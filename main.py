@@ -8,6 +8,7 @@ import datetime as dt
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_login import current_user
 from flask_restful import reqparse, abort, Api, Resource
+from other_py_files.some_function import equip
 
 
 app = Flask(__name__)
@@ -81,6 +82,12 @@ def logout():
     return redirect('/')
 
 
+@app.route('/equip/<position>/<int:item_id>')
+def equip_item(position, item_id):
+    equip(position, item_id)
+    return redirect('/inventory')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -111,15 +118,26 @@ def inventory():
     all_items = db_sess.query(Item).all()
     items = []
     for x in current_user.inventory.split(', '):
-        items.append((all_items[int(x) - 1].name, all_items[int(x) - 1].position,
-                      all_items[int(x) - 1].about, all_items[int(x) - 1].id))
+        try:
+            items.append((all_items[int(x) - 1].name, all_items[int(x) - 1].position,
+                          all_items[int(x) - 1].about, all_items[int(x) - 1].id))
+        except ValueError:
+            break
+    equipment = [(all_items[current_user.head - 1].name,
+                  all_items[current_user.head - 1].about, all_items[current_user.head - 1].id),
+                 (all_items[current_user.body - 1].name,
+                  all_items[current_user.body - 1].about, all_items[current_user.body - 1].id),
+                 (all_items[current_user.legs - 1].name,
+                  all_items[current_user.legs - 1].about, all_items[current_user.legs - 1].id),
+                 (all_items[current_user.hands - 1].name,
+                  all_items[current_user.hands - 1].about, all_items[current_user.hands - 1].id)]
     return render_template("inventory.html", rows_n=len(items) // 4,
-                           no_rows=len(items) % 4, items=items)
+                           no_rows=len(items) % 4, items=items, equipment=equipment)
 
 
 def main():
     db_session.global_init('db/blogs.db')
-    app.run(port=8080)
+    app.run(port=5000)
 
 
 if __name__ == '__main__':

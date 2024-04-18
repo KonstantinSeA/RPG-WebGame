@@ -9,11 +9,10 @@ item = Item(
     power=1,
     position='hands',
     about=
-    'Старый Игрушечный нож.  Выглядит смешно, сложно поверить что этим можно кому-то навредить. '
-    'Сила - 1'
+    'Старый Игрушечный нож. Выглядит смешно, сложно поверить что этим можно кому-то навредить.'
+    ' Сила - 1'
 )
-db_sess = db_session.create_session()
-db_sess.add(item)
+# db_sess.add(item)
 db_sess.commit()
 item = Item(
     name='Старая Куртка',
@@ -21,7 +20,7 @@ item = Item(
     position='body',
     about='Старая выцветшая куртка. В меру удобна, способна укрыть от ветра. Сила - 2'
 )
-db_sess.add(item)
+# db_sess.add(item)
 db_sess.commit()
 item = Item(
     name='Потрепанные Штаны',
@@ -29,7 +28,7 @@ item = Item(
     position='legs',
     about='Потрепанные Штаны. Лучше чем ничего. Сила - 1'
 )
-db_sess.add(item)
+# db_sess.add(item)
 db_sess.commit()
 item = Item(
     name='Повязка',
@@ -37,5 +36,13 @@ item = Item(
     position='head',
     about='Повязка на голову. Может укрыть от солнца, наврядли годна для чего-то еще. Сила - 1'
 )
-db_sess.add(item)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Новый Деревянный Нож',
+    power=2,
+    position='hands',
+    about='Как старый, только новый. Сила - 2'
+)
+# db_sess.add(item)
 db_sess.commit()
