@@ -1,6 +1,7 @@
 from data import db_session
 from data.users import User
 from flask_login import current_user
+import schedule
 
 
 def equip(position, item_id):
@@ -34,4 +35,15 @@ def equip(position, item_id):
         inventory.pop(inventory.index(str(item_id)))
         inventory.append(str(old))
         user.inventory = ', '.join(inventory)
+    db_sess.commit()
+
+
+def shedule_settings():
+    schedule.every().day().at('4:00').do(energy_back())
+
+
+def energy_back():
+    db_sess = db_session.create_session()
+    for user in db_sess.query(User).all():
+        user.energy = 10
     db_sess.commit()

@@ -5,10 +5,11 @@ from data.users import User
 from data.items import Item
 from forms.user import RegisterForm, LoginForm
 import datetime as dt
+import schedule
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_login import current_user
 from flask_restful import reqparse, abort, Api, Resource
-from other_py_files.some_function import equip
+from other_py_files.some_function import equip, shedule_settings
 
 
 app = Flask(__name__)
@@ -138,6 +139,9 @@ def inventory():
 def main():
     db_session.global_init('db/blogs.db')
     app.run(port=5000)
+    shedule_settings()
+    while True:
+        schedule.run_pending()
 
 
 if __name__ == '__main__':
