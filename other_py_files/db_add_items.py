@@ -46,3 +46,60 @@ item = Item(
 )
 # db_sess.add(item)
 db_sess.commit()
+item = Item(
+    name='Старый Меч Странника',
+    power=3,
+    position='hands',
+    about='Когда-то этим мечом пользовался бродяга, вы никогда не узнаете о нем больше. Сила - 3'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Кожанная Куртка',
+    power=3,
+    position='body',
+    about='Неплохая кожанная куртка. Может не только укрыть от ветра, но и защитить от укуса.'
+          ' Сила - 3'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Старый плащ странника',
+    power=4,
+    position='body',
+    about='Когда-то этим плащем пользовался бродяга, вы никогда не узнаете о нем больше. Сила - 4'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Новая Повязка',
+    power=2,
+    position='head',
+    about='Как старая, только новая. Сила - 2'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Старая Шляпа Странника',
+    power=3,
+    position='head',
+    about='Когда-то этой Шляпой пользовался бродяга, вы никогда не узнаете о нем больше. Сила - 3'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Новые Штаны',
+    power=2,
+    position='legs',
+    about='Как старые, только новые. Сила - 2'
+)
+# db_sess.add(item)
+db_sess.commit()
+item = Item(
+    name='Старые штаны странника',
+    power=3,
+    position='legs',
+    about='Когда-то этими штанами пользовался бродяга, вы никогда не узнаете о нем больше. Сила - 3'
+)
+# db_sess.add(item)
+db_sess.commit()
