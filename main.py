@@ -87,7 +87,7 @@ def logout():
 
 @app.route('/equip/<position>/<int:item_id>')
 def equip_item(position, item_id):
-    equip(position, item_id)
+    equip(position, item_id, current_user.id)
     return redirect('/inventory')
 
 
@@ -103,11 +103,6 @@ def login():
         return render_template('login.html', title='Авторизация',
                                message='Неверный логин или пароль', form=form)
     return render_template('login.html', title='Авторизация', form=form)
-
-
-@app.route('/profile', methods=['GET', 'POST'])
-def profile():
-    return render_template("profile.html")
 
 
 @app.route('/support', methods=['GET', 'POST'])
