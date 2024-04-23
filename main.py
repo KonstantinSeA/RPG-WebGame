@@ -4,6 +4,7 @@ from data import db_session
 from data.users import User
 from data.items import Item
 from forms.user import RegisterForm, LoginForm
+from forms.report import ReportForm
 import datetime as dt
 import schedule
 import time
@@ -107,7 +108,20 @@ def login():
 
 @app.route('/support', methods=['GET', 'POST'])
 def support():
-    return render_template("support_form.html")
+    form = ReportForm()
+    if form.validate_on_submit():
+        f = form.file.data
+        if not (f.filename.endswith('.jpg') or f.filename.endswith('.png')):
+            return render_template("support_form.html",
+                                   message='Приложите Фото, а не другой файл', form=form)
+        f.save(f'reports/{f.filename}')
+        report = [f'Email: {form.email.data}\n', f'Name: {form.name.data}\n\n',
+                  form.about.data, f'\n\nPhoto: {f.filename}\n']
+        with open(f'reports/{form.name.data}', mode='w') as fod:
+            fod.writelines(report)
+        return render_template("support_form.html", message='Обращение Отправлено', form=form)
+
+    return render_template("support_form.html", form=form)
 
 
 @app.route('/inventory', methods=['GET', 'POST'])
