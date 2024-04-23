@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Work in progress</h1>
+    <h1 align="center">Project Moribus</h1>
+    <h2>Таблица Лидеров</h2>
+    <br>
+    <ol class="list-group list-group-numbered">
+        {% for user in users %}
+            <li class="list-group-item">Игрок: {{ user[0] }} Уровень: {{ user[1] }} Опыт: {{ user[2] }}</li>
+        {% endfor %}
+    </ol>
+    <br>
+    {% if current_user.is_authenticated %}
+        <h2>Информация о вас  {{ current_user.name }}</h2>
+        <a> Ваш Уровень: {{ current_user.level }} <br>
+            Накопленный Опыт: {{ current_user.xp }} <br>
+            Осталось Энергии: {{ current_user.energy }} <br>
+        </a>
+    {% endif %}
 {% endblock %}
 {% block body_navbar %}
     <nav class="navbar navbar-dark bg-dark">

@@ -31,7 +31,13 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    db_sess = db_session.create_session()
+    db_users = db_sess.query(User).all()
+    users = []
+    for user in db_users:
+        users.append([user.name, user.level, user.xp])
+    return \
+        render_template("index.html", users=sorted(users, key=lambda x: (x[1], x[2]), reverse=True))
 
 
 @app.route('/register', methods=['GET', 'POST'])
