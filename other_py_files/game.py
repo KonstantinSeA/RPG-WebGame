@@ -40,7 +40,7 @@ def game_request(line, answer, current_user):
                         'await': 45,
                         'complete_messange': 'lose_common_fight_1'}
             elif line == 'Узнать о вашем уровне':
-                return {'answer': f'Ваш Уровень: {user.level}'
+                return {'answer': f'Ваш Уровень: {user.level} \n'
                                   f'До повышения: {500 - user.xp}',
                         'await': 0,
                         'complete_messange': 'no messange'}
