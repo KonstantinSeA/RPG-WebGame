@@ -1,5 +1,6 @@
 import logging
 import asyncio
+import os
 from telegram.ext import Application, MessageHandler, filters, CommandHandler, ApplicationBuilder
 from telegram.ext import ConversationHandler
 from telegram import ReplyKeyboardMarkup
@@ -19,6 +20,8 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 db_session.global_init('db/blogs.db')
+
+tasks = []
 
 
 def main():
@@ -90,16 +93,6 @@ async def game_start(update, context):
     return 1
 
 
-async def sleep_current(time):
-    await asyncio.sleep(time)
-
-
-async def sleep_now(time):
-    tasks = []
-    tasks.append(sleep_current(time))
-    await asyncio.gather(*tasks)
-
-
 async def game_response(update, context):
     username = update.message.chat.username
     con = sqlite3.connect('db/blogs.db')
@@ -132,7 +125,7 @@ async def game_response(update, context):
     # печатаем сообщение ответа
     await update.message.reply_text(request_answer['answer'])
     # ждем определенное в ответе время, лучше писать это асихронно наверное...
-    sleep_now(request_answer['await'])
+    await asyncio.sleep(request_answer['await'])
     # запрашиваем результат действия
     after_answer = after_await(request_answer['complete_messange'], user_id)
     # печатаем результат действия
